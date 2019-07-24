@@ -5,10 +5,10 @@ import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "./redux/rootReducer";
 import createSagaMiddleware from "redux-saga";
 import Dashboard from "./routes/Dashboard";
-//import InitialState from "./initialState";
 import './index.css';
 
 import { categoriesWatcherSaga } from "./redux/categories/sagas";
+import { singleCategoryWatcherSaga } from "./redux/categories/sagas-single-category";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const sagaMiddleware = createSagaMiddleware();
@@ -20,6 +20,7 @@ const storeInstance = createStore(
 );
 
 sagaMiddleware.run(categoriesWatcherSaga);
+sagaMiddleware.run(singleCategoryWatcherSaga);
 
 ReactDOM.render(
   <Provider store={storeInstance}>

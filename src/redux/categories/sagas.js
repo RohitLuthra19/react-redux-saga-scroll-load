@@ -1,32 +1,34 @@
-import { takeLatest, put, call, select } from 'redux-saga/effects';
+import { takeLatest, put, call } from 'redux-saga/effects';
 import axios from 'axios';
 import * as types from './types';
+import * as constants from '../constants';
 
 export function* categoriesWatcherSaga() {
     yield takeLatest(types.GET_CATEGORIES_REQUEST, workerSaga);
 }
 
-export function fetchData(baseUrl, limit, offset) {
+export function fetchData(baseUrl) {
     const url =`${baseUrl}/categories`;
-    const params = { limit, offset };
 
-    return axios.get(url, {params})
+    return axios.get(url, {})
         .then(val => val)
         .catch(err => console.log('get categories error', err))
 }
 
-export function* workerSaga({ limit, offset }) {
+export function* workerSaga() {
     try {
-        //const state = yield select();
-        const baseUrl = 'https://api.thecatapi.com/v1/';
-        const data = yield call(fetchData, baseUrl, limit, offset);
+        /* const state = yield select();
+        const categories = state.categories.toJS();
+        console.log(categories); */
+
+        const data = yield call(fetchData, constants.BASE_URL);
+
         if (data) {
             yield put({ type: types.GET_CATEGORIES_SUCCESS, data });
         } else {
             yield put({ type: types.GET_CATEGORIES_FAILURE, error: true });
         }
 
-        //yield put({ type: types.GET_CATEGORIES_REQUEST });
     } catch (error) {
         yield put({ type: types.GET_CATEGORIES_FAILURE, error });
     }
