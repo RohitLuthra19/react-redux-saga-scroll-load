@@ -1,32 +1,43 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import "./Dashboard.css";
 import SideNav from './SideNav';
 import Category from './Category';
 
-export default class Dashboard extends React.PureComponent {
+/* import { selectCategory } from '../redux/categories/reducer'; */
 
-    state= {
-      activeCategory: -1,
-    }
+export class Dashboard extends React.PureComponent {
+
     render() {
-
-        const { activeCategory } = this.state;
+        const { activeCategory } = this.props.categories;
 
         return (
           <div className="row">
-              <SideNav selectCategory={(activeCategory)=> this.handleSelectCategory(activeCategory)}/>
+              <SideNav />
               <div className="main">
-                <Category activeCategory={activeCategory}/>
+                <Category activeCategory={activeCategory} />
               </div>
           </div>
         );
     }
-
-    ///////////////////////////////////////////////////////////////////////
-    //  EVENT HANDLERS
-    ///////////////////////////////////////////////////////////////////////
-    handleSelectCategory(activeCategory) {
-      this.setState({ activeCategory });
-    }
 }
+
+///////////////////////////////////////////////////////////////////////
+//  REDUX CONNECTION
+///////////////////////////////////////////////////////////////////////
+function mapStateToProps(state) {
+  const { categories } = state;
+  const categoriesToJS = categories.toJS();
+
+  return {
+    categories: categoriesToJS.categories,
+  };
+}
+
+// don't need mapDispatchToProps b/c we are using action creators
+export default connect(
+  mapStateToProps,
+  {
+  }
+)(Dashboard);

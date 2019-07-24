@@ -17,10 +17,6 @@ export function fetchData(baseUrl) {
 
 export function* workerSaga() {
     try {
-        /* const state = yield select();
-        const categories = state.categories.toJS();
-        console.log(categories); */
-
         const data = yield call(fetchData, constants.BASE_URL);
 
         if (data) {

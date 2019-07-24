@@ -1,21 +1,21 @@
 import React from 'react';
 import { connect } from "react-redux";
-//import { Link } from 'react-router-dom';
 
 import "./SideNav.css";
 
-import { getCategories } from '../redux/categories/reducer';
+import { getCategories, selectCategory } from '../redux/categories/reducer';
+
 export class SideNav extends React.PureComponent {
 
     render() {
-      const { categories } = this.props.categories;
+      const { items } = this.props.categories;
 
       return (
           <div className="side">
             <h2>Categories</h2>
             <div className="navbar">
               <ul>                  
-                {this.renderCategories(categories.items)}
+                {this.renderCategories(items)}
               </ul>
             </div>
           </div>
@@ -52,7 +52,7 @@ function mapStateToProps(state) {
   const categoriesToJS = categories.toJS();
 
   return {
-    categories : categoriesToJS,
+    categories : categoriesToJS.categories,
   };
 }
 
@@ -61,5 +61,6 @@ export default connect(
   mapStateToProps,
   {
     getCategories,
+    selectCategory,
   }
 )(SideNav);

@@ -12,10 +12,12 @@ const reducer = (state = initialState, action) => {
 
         case types.GET_CATEGORIES_SUCCESS:
             const { data } = action.data;
+            const defaultCategory = data && data[0].id;
 
             return state.setIn(['categories', 'fetching'], false)
               .setIn(['categories', 'error'], false)
-              .setIn(['categories', 'items'], data);
+              .setIn(['categories', 'items'], data)
+              .setIn(['categories', 'activeCategory'], defaultCategory);
 
         case types.GET_CATEGORIES_FAILURE:
             return state.setIn(['categories', 'fetching'], false)
@@ -27,15 +29,25 @@ const reducer = (state = initialState, action) => {
               .setIn(['categories', 'error'], false);
 
         case types.GET_SINGLE_CATEGORY_SUCCESS:
-            const { data: res } = action.data;
+            const { data: imagesData } = action.data;
             
             return state.setIn(['categories', 'fetching'], false)
               .setIn(['categories', 'error'], false)
-              .setIn(['categories', 'images'], res);
+              /* .setIn(['categories', 'images'], imagesData); */
+              .updateIn(['categories', 'images'], images => {
+                if (action.isMore) {
+                  return [...images, ...imagesData];
+                }
+                return [...imagesData]; 
+              });
 
         case types.GET_SINGLE_CATEGORY_FAILURE:
             return state.setIn(['categories', 'fetching'], false)
               .setIn(['categories', 'error'], true);
+
+        case types.SELECT_CATEGORY:
+            return state.setIn(['categories', 'activeCategory'], action.categoryId)
+            .setIn(['categories', 'images'], []);
 
         default: 
             return state;
@@ -45,5 +57,5 @@ const reducer = (state = initialState, action) => {
 export default reducer;
 
 export const getCategories = () => ({ type: types.GET_CATEGORIES_REQUEST })
-export const getSingleCategory = (categoryId, limit, page) => ({ type: types.GET_SINGLE_CATEGORY_REQUEST, categoryId, limit, page })
-
+export const getSingleCategory = (categoryId, limit, page, isMore) => ({ type: types.GET_SINGLE_CATEGORY_REQUEST, categoryId, limit, page, isMore })
+export const selectCategory = (categoryId) => ({ type: types.SELECT_CATEGORY, categoryId})

@@ -6,8 +6,8 @@ export const initialState = fromJS({
     categories: {
         items: [],
         images: [],
-        total: 0,
         limit: 10,
         page: 0,
+        activeCategory: -1,
     }
 })
