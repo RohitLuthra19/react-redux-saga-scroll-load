@@ -14,8 +14,14 @@ describe('SideNav renders',() => {
   })
 
   it('find text:Categories', () => {
-    const wrapper = mount(<SideNav store={store}/>);
+    const wrapper = mount(<SideNav store={store} />);
     const text = wrapper.find('h2').text();
     expect(text).toEqual('Categories');
+  });
+
+  it('side nav bar ul count', () => {
+    const wrapper = mount(<SideNav store={store} />);
+    const navBarLink = wrapper.find('ul');
+    expect(navBarLink.length).toEqual(1);
   });
 })
