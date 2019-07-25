@@ -3,6 +3,7 @@ import SideNav from './SideNav';
 import '../setupTests';
 import renderer from 'react-test-renderer';
 import store from '../redux/store';
+import { shallow, mount } from 'enzyme';
 
 describe('SideNav renders',() => {
   it('SideNav component created', () => {
@@ -11,4 +12,10 @@ describe('SideNav renders',() => {
     );
     expect(rendered.toJSON()).toMatchSnapshot();
   })
+
+  it('find text:Categories', () => {
+    const wrapper = mount(<SideNav store={store}/>);
+    const text = wrapper.find('h2').text();
+    expect(text).toEqual('Categories');
+  });
 })
