@@ -30,8 +30,11 @@ export class SideNav extends React.PureComponent {
     //  RENDER METHODS
     ///////////////////////////////////////////////////////////////////////
     renderCategories(categories) {
+      const { activeCategory } = this.props.categories;
+
       return categories.map((category, i) => {
-        return (<li key={category.id} onClick={() => this.handleSelectCategory(category.id)}>{category.name}</li>)
+        let style = (activeCategory === category.id) ? 'active_link' : '';
+        return (<li className={style} key={category.id} onClick={() => this.handleSelectCategory(category.id)}>{category.name}</li>)
       })
     }
 

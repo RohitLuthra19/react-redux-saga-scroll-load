@@ -5,23 +5,14 @@ import "./Dashboard.css";
 import SideNav from './SideNav';
 import Category from './Category';
 
-/* import { selectCategory } from '../redux/categories/reducer'; */
-
-export class Dashboard extends React.PureComponent {
-
-    render() {
-        const { activeCategory } = this.props.categories;
-
-        return (
-          <div className="row">
-              <SideNav />
-              <div className="main">
-                <Category activeCategory={activeCategory} />
-              </div>
-          </div>
-        );
-    }
-}
+const Dashboard = props => (
+  <div className="row">
+    <SideNav />
+    <div className="main">
+      <Category activeCategory={props.categories.activeCategory} />
+    </div>
+  </div>
+);
 
 ///////////////////////////////////////////////////////////////////////
 //  REDUX CONNECTION

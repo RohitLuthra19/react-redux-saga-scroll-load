@@ -27,3 +27,8 @@
 .link {
   text-decoration: none;
 }
+
+.active_link {
+  background-color: #ddd;
+  color: #0000AA;
+}

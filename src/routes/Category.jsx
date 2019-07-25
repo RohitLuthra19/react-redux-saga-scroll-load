@@ -51,8 +51,8 @@ export class Category extends React.PureComponent {
     ///////////////////////////////////////////////////////////////////////
     renderImages(images) {
       return images.map((item, i) => {
-        return (<img key={item.id} src={item.url} width={450} height={400} alt={item.id} className="img"></img>)
-      })
+        return (<img key={item.id + i} src={item.url} width={450} height={400} alt={item.id} className="img"></img>);
+      });
     }
 
     ///////////////////////////////////////////////////////////////////////
