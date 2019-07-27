@@ -39,10 +39,9 @@ export class Main extends React.PureComponent {
     }
 
     componentDidUpdate(prevProps) {
-      const { limit, page } = this.props.categories;
-      
-      if (prevProps.activeCategory !== this.props.activeCategory) {
-        this.props.getSingleCategory(this.props.activeCategory, limit, page, false);
+      const { limit, page, activeCategory } = this.props.categories;
+      if (prevProps.categories.activeCategory !== activeCategory) {
+        this.props.getSingleCategory(activeCategory, limit, page, false);
       }
     }
 
@@ -59,8 +58,7 @@ export class Main extends React.PureComponent {
     //  EVENT HANDLERS
     ///////////////////////////////////////////////////////////////////////
     handleMoreClick = () => {
-      const { activeCategory } = this.props;
-      const { limit, page } = this.props.categories;
+      const { limit, page, activeCategory } = this.props.categories;
       this.props.getSingleCategory(activeCategory, limit, page + 1, true);
     }
 }
