@@ -1,4 +1,4 @@
-import reducer, { getCategories, getSingleCategory, selectCategory } from './reducer.js';
+import reducer, { getAllCategories, getSingleCategory, selectCategory } from './reducer.js';
 import { fromJS } from 'immutable';
 
 const initialState = {
@@ -16,7 +16,7 @@ const initialState = {
 describe('actions', () => {
   
   it('get categories', () => {
-    const action = getCategories();
+    const action = getAllCategories();
     const expected = reducer(fromJS(initialState), action);
     expect(expected.toJS().categories.fetching).toEqual(true);
   });

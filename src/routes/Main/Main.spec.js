@@ -1,24 +1,24 @@
 import React from 'react';
-import Category from './Category';
-import '../setupTests';
+import Main from './Main';
+import '../../setupTests';
 import renderer from 'react-test-renderer';
-import store from '../redux/store';
+import store from '../../redux/store';
 import { mount, shallow } from 'enzyme';
 
-describe('Category renders',() => {
+describe('Main renders',() => {
   it('renders', () => {
-    const wrapper = shallow(<Category store={store} />);
+    const wrapper = shallow(<Main store={store} />);
     expect(wrapper.exists()).toBe(true);
   })
-  it('Category component created', () => {
+  it('Main component created', () => {
     const rendered = renderer.create(
-      <Category store={store} />
+      <Main store={store} />
     );
     expect(rendered.toJSON()).toMatchSnapshot();
   })
 
   it('find more button', () => {
-    const wrapper = mount(<Category store={store}/>);
+    const wrapper = mount(<Main store={store}/>);
     const text = wrapper.find('button').text();
     expect(text).toEqual('More');
   });

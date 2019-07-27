@@ -4,7 +4,7 @@ import * as types from './types';
 import * as constants from '../constants';
 
 export function* categoriesWatcherSaga() {
-    yield takeLatest(types.GET_CATEGORIES_REQUEST, workerSaga);
+    yield takeLatest(types.GET_ALL_CATEGORIES_REQUEST, workerSaga);
 }
 
 export function fetchData(baseUrl) {
@@ -20,12 +20,12 @@ export function* workerSaga() {
         const data = yield call(fetchData, constants.BASE_URL);
 
         if (data) {
-            yield put({ type: types.GET_CATEGORIES_SUCCESS, data });
+            yield put({ type: types.GET_ALL_CATEGORIES_SUCCESS, data });
         } else {
-            yield put({ type: types.GET_CATEGORIES_FAILURE, error: true });
+            yield put({ type: types.GET_ALL_CATEGORIES_FAILURE, error: true });
         }
 
     } catch (error) {
-        yield put({ type: types.GET_CATEGORIES_FAILURE, error });
+        yield put({ type: types.GET_ALL_CATEGORIES_FAILURE, error });
     }
 }

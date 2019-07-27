@@ -1,8 +1,8 @@
 import React from 'react';
 import SideNav from './SideNav';
-import '../setupTests';
+import '../../setupTests';
 import renderer from 'react-test-renderer';
-import store from '../redux/store';
+import store from '../../redux/store';
 import { shallow, mount } from 'enzyme';
 
 

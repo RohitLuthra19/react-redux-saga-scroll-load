@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import "./SideNav.css";
 
-import { getCategories, selectCategory } from '../redux/categories/reducer';
+import { getAllCategories, selectCategory } from '../../redux/categories/reducer';
 
 export class SideNav extends React.PureComponent {
 
@@ -23,7 +23,7 @@ export class SideNav extends React.PureComponent {
     }
 
     componentDidMount() {
-      this.props.getCategories();
+      this.props.getAllCategories();
     }
 
     ///////////////////////////////////////////////////////////////////////
@@ -63,7 +63,7 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   {
-    getCategories,
+    getAllCategories,
     selectCategory,
   }
 )(SideNav);

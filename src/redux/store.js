@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
 
 import rootReducer from "./rootReducer";
-import { categoriesWatcherSaga } from "./categories/sagas";
+import { categoriesWatcherSaga } from "./categories/sagas-all-categories";
 import { singleCategoryWatcherSaga } from "./categories/sagas-single-category";
 
 

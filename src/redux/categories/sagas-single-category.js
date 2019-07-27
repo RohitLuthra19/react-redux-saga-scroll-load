@@ -3,12 +3,10 @@ import axios from "axios";
 import * as types from './types';
 import * as constants from '../constants';
 
-
 // watcher saga: watches for actions dispatched to the store, starts worker saga
 export function* singleCategoryWatcherSaga() {
   yield takeLatest(types.GET_SINGLE_CATEGORY_REQUEST, workerSaga);
 }
-
 
 export function fetchData(baseUrl, categoryId, limit, page) {
   const url = `${baseUrl}/images/search?category_ids=${categoryId}&limit=${limit}&page=${page}`;
@@ -21,9 +19,6 @@ export function fetchData(baseUrl, categoryId, limit, page) {
 // worker saga: makes the api call when watcher saga sees the action
 export function* workerSaga({ categoryId, limit, page, isMore }) {
   try {
-    /* const state = yield select();
-    const { categories } = state.categories.toJS();
-    let { page } = categories;  */
     const data = yield call(fetchData, constants.BASE_URL, categoryId, limit, page);
 
     if (data) {

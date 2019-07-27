@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Category renders Category component created 1`] = `
+exports[`Main renders Main component created 1`] = `
 <div
   className="main"
 >

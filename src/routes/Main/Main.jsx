@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import "./Category.css";
-import Spinner from '../components/Spinner/Spinner';
+import "./Main.css";
+import Spinner from '../../components/Spinner/Spinner';
 
-import { getSingleCategory } from '../redux/categories/reducer';
+import { getSingleCategory } from '../../redux/categories/reducer';
 
-export class Category extends React.PureComponent {
+export class Main extends React.PureComponent {
     render() {
       const { images, fetching } = this.props.categories;
 
@@ -38,7 +38,7 @@ export class Category extends React.PureComponent {
       }
     }
 
-    componentDidUpdate(prevProps: Props) {
+    componentDidUpdate(prevProps) {
       const { limit, page } = this.props.categories;
       
       if (prevProps.activeCategory !== this.props.activeCategory) {
@@ -83,4 +83,4 @@ export default connect(
   {
     getSingleCategory,
   }
-)(Category);
+)(Main);

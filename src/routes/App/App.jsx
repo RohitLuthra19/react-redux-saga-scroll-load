@@ -1,15 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import "./Dashboard.css";
-import SideNav from './SideNav';
-import Category from './Category';
+import "./App.css";
+import SideNav from '../SideNav/SideNav';
+import Main from '../Main/Main';
 
-const Dashboard = props => (
+const App = props => (
   <div className="row">
     <SideNav />
     <div className="main">
-      <Category activeCategory={props.categories.activeCategory} />
+      <Main activeCategory={props.categories.activeCategory} />
     </div>
   </div>
 );
@@ -27,8 +27,4 @@ function mapStateToProps(state) {
 }
 
 // don't need mapDispatchToProps b/c we are using action creators
-export default connect(
-  mapStateToProps,
-  {
-  }
-)(Dashboard);
+export default connect(mapStateToProps)(App);
