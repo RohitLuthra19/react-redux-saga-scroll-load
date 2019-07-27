@@ -19,7 +19,7 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 or if it takes time try this
 
-### 'npm test --no-watchman --all`
+### `npm test --no-watchman --all`
 
 Launches the test runner in the not interactive watch mode.<br>
 
