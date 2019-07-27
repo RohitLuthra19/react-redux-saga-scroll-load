@@ -31,8 +31,7 @@ export class Main extends React.PureComponent {
     }
 
     componentDidMount() {
-      const { activeCategory } = this.props;
-      const { limit, page } = this.props.categories;
+      const { limit, page, activeCategory } = this.props.categories;
       if (activeCategory !== -1) {
         this.props.getSingleCategory(activeCategory, limit, page, false);
       }
