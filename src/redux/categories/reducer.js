@@ -29,11 +29,11 @@ const reducer = (state = initialState, action) => {
               .setIn(['categories', 'error'], false);
 
         case types.GET_SINGLE_CATEGORY_SUCCESS:
-            const { data: imagesData } = action.data;
+            const { data: imagesData} = action.data;
             
             return state.setIn(['categories', 'fetching'], false)
               .setIn(['categories', 'error'], false)
-              /* .setIn(['categories', 'images'], imagesData); */
+              .setIn(['categories', 'page'], action.page)
               .updateIn(['categories', 'images'], images => {
                 if (action.isMore) {
                   return [...images, ...imagesData];

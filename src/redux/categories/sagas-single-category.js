@@ -19,14 +19,17 @@ export function fetchData(baseUrl, categoryId, limit, page) {
 // worker saga: makes the api call when watcher saga sees the action
 export function* workerSaga({ categoryId, limit, page, isMore }) {
   try {
-    const data = yield call(fetchData, constants.BASE_URL, categoryId, limit, page);
+    /* const state = yield select();
+    const existingPageState = state.categories.toJS().categories.page; */
 
-    if (data) {
-      yield put({ type: types.GET_SINGLE_CATEGORY_SUCCESS, data, isMore });
-    } else {
-      yield put({ type: types.GET_SINGLE_CATEGORY_FAILURE, error: true });
-    }
+      const data = yield call(fetchData, constants.BASE_URL, categoryId, limit, page);
 
+      if (data) {
+        yield put({ type: types.GET_SINGLE_CATEGORY_SUCCESS, data, isMore, page });
+      } else {
+        yield put({ type: types.GET_SINGLE_CATEGORY_FAILURE, error: true });
+      }
+    
   } catch (error) {
     yield put({ type: types.GET_SINGLE_CATEGORY_FAILURE, error: true });
   }
